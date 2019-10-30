@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylemain.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    {{ form.media }}
+</head>
+<style>
+  * {
+        box-sizing: border-box;
+    }
+                 
+    /* Float four columns side by side */
+    .column {
+        float: left;
+        width: 50%;
+        padding: 13% 5%;
+    }
+          
+    .row {margin: 0 -5px;}
+          
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        text-align: center;
+        background-color: #f1f1f1;
+    }
+
+    .historycard {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 40%;
+        background-color: #f1f1f1;
+        margin-left: 40%;
+        margin-top: 10%;
+    }
+    
+    .historycard:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .historycontainer {
+        padding: 2px 16px;
+    }
+          
+</style>
+
+<body style="background-image:url({% static 'images/background_1.jpg' %}); background-size: cover;" >
+<nav class="navbar fixed-top navbar-light bg-light">
+  <a class="navbar-brand" href="http://127.0.0.1:8000/" style="margin-left: 40%">
+    <img src="{% static 'images/icon.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+    &nbsp ಸುದ್ದಿ - ಸಂಶೋಧಕ
+  </a>
+</nav>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

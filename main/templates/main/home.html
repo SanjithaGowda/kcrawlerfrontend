@@ -1,0 +1,69 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+{% load static %}
+<div class="row">
+    <div class="column">
+        <div class="card">
+            <h4 style="text-align:center;" data-toggle="tooltip" data-placement="top" title="Type the name of the person"><b>ವ್ಯಕ್ತಿಯ ಹೆಸರನ್ನು ಕೆಳಗೆ ಟೈಪ್ ಮಾಡಿ</b></h4> 
+            <br>
+            <img src="{% static 'images/people_icon.jpg' %}"  alt="Avatar" style="width:185px; height:190px; margin-left:33%">
+            <br>
+            <form method="POST" style="text-align:center">
+                {% csrf_token %}
+                {{ form }}
+                <br><br>
+                <input type="submit" class="btn btn-primary" style="background-color: black" value="Search">
+                
+            </form>
+            <br>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <h4 style="text-align:center;" data-toggle="tooltip" data-placement="top" title="Latest Search"><b>ಹಿಂದಿನ ಹುಡುಕಾಟ</b></h4>
+            <table class='table align-items-center table-flush'>
+                    <thead class='thead-light'>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in objectlist %}
+                        <tr>
+                            <td>{{ item.keyword }}</td>
+                            {% if item.status == "done" %}
+                                <td><a href="{% url 'main:list' pk=item.unique_id %}">{{ item.status }}</a></td>
+                            {% else %}
+                                <td>{{ item.status }}</td>
+                                <script>
+                                    window.setTimeout(function () {
+                                        location.href = "http://127.0.0.1:8000/";
+                                    }, 5000); 
+                                </script>
+                                
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{% url 'main:history' %}" style="margin-right: 0%"> ಎಲ್ಲಾ ಫಲಿತಾಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ </a>
+                
+        </div>
+        <br>
+        <div class="card">
+                <h4 style="text-align:center;" data-toggle="tooltip" data-placement="top" title="Bookmarks"><b>ಸಂಗ್ರಹಣೆಗಳು</b></h4>
+                <br>
+                ಭವಿಷ್ಯದ ಉಲ್ಲೇಖಕ್ಕಾಗಿ ಗುರುತಿಸಿ ಉಳಿಸಲಾದ ಲೇಖನೆಗಳನ್ನು ಓದಲು ಇಲ್ಲಿ
+                <br>
+                <a href="#">ಕ್ಲಿಕ್ ಮಾಡಿ</a>
+            </div>
+    </div>   
+</div>
+  <script>
+  var s = document.createElement('script'); s.setAttribute('src','http://developer.quillpad.in/static/js/quill.js?lang=Kannada&key=73909f8c96a9d08e876411c0a212a1f4'); s.setAttribute('id','qpd_script'); document.head.appendChild(s);
+  </script>
+
+{% endblock content %}

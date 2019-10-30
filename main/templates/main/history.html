@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+{% load static %}
+<div class="row">
+    <div class="column">
+        <div class="card">
+            <table class='table align-items-center table-flush'>
+                <h3> History </h3>(No of searches : {{length}} )
+                <thead class='thead-light'>
+                    <tr>
+                        <th>Keyword</th>
+                        <th>Date Time</th>
+                        <th>Results</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in objects.all %}
+                        {% if forloop.counter <= half_length %}
+                        <tr>
+                            <td>{{ item.keyword }}</td>
+                            <td>{{ item.date }}</td>
+                            {% if item.status == "done" %}
+                                <td><a href="{% url 'main:list' pk=item.unique_id %}">View articles</a></td>
+                            {% else %}
+                                <td>Processing Failed</td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <table class='table align-items-center table-flush'>
+                <thead class='thead-light'>
+                    <tr>
+                        <th>Keyword</th>
+                        <th>Date Time</th>
+                        <th>Results</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in objects.all %}
+                        {% if forloop.counter > half_length %}
+                        <tr>
+                            <td>{{ item.keyword }}</td>
+                            <td>{{ item.date }}</td>
+                            {% if item.status == "done" %}
+                                <td><a href="{% url 'main:list' pk=item.unique_id %}">View articles</a></td>
+                            {% else %}
+                                <td>Processing Failed</td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

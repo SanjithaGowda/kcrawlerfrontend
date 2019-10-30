@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+{% load static %}
+<div class="row">
+
+    <div class="column">
+    <div class="card" style="width: 90%; margin-bottom:5%">
+                {{keyword}}
+            </div>
+        {% for item in objects.all %}
+        {% if forloop.counter|divisibleby:2  %}
+        {% else %}
+            <div class="card" style="width: 90%; margin-bottom:5%">
+                <a href="{{ item.url }}">{{ item.headline }}</a> <br>
+                {{ item.content }}  
+                <br><br>
+                <a href="#">BOOKMARK THIS!  </a>
+            </div>    
+        {% endif %}      
+        {% endfor %}     
+    </div>
+
+    <div class="column" >
+        {% for item in objects.all %}
+        {% if forloop.counter|divisibleby:2  %}
+            <div class="card" style="width: 90%; margin-bottom:5%">
+                <a href="{{ item.url }}">{{ item.headline }}</a>
+                {{ item.content }}
+                <br><br>
+                <a href="#">BOOKMARK THIS!  </a>
+            </div>    
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
